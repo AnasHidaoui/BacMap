@@ -1,0 +1,97 @@
+flutter pub add flutter_cached_pdfview
+=======================================
+lass PDFViewerCachedFromUrl extends StatelessWidget {
+  const PDFViewerCachedFromUrl({Key? key, required this.url}) : super(key: key);
+
+  final String url;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Cached PDF From Url'),
+      ),
+      body: const PDF().cachedFromUrl(
+        url,
+        placeholder: (double progress) => Center(child: Text('$progress %')),
+        errorWidget: (dynamic error) => Center(child: Text(error.toString())),
+      ),
+    );
+  }
+}
+==================================================================
+==================================================================
+flutter pub add url_launcher
+============================
+Future<void> _launchInBrowser(String url) async {
+    if (!await launch(
+      url,
+      forceSafariVC: false,
+      forceWebView: false,
+      headers: <String, String>{'my_header_key': 'my_header_value'},
+    )) {
+      throw 'Could not launch $url';
+    }
+  }
+=====================================================================
+=====================================================================
+Widget myWidget(BuildContext context) {
+  return MediaQuery.removePadding(
+    context: context,
+    removeTop: true,
+    child: GridView.builder(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+      ),
+      itemCount: 300,
+      itemBuilder: (BuildContext context, int index) {
+        return Card(
+          color: Colors.amber,
+          child: Center(child: Text('$index')),
+        );
+      }
+    ),
+  );
+}
+==========================================================================
+==========================================================================
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: TabBar(
+            tabs: [
+              Tab(icon: Icon(Icons.android), text: "Tab 1",),
+              Tab(icon: Icon(Icons.phone_iphone), text: "Tab 2"),
+            ],
+          ),
+          title: Text('TutorialKart - TabBar & TabBarView'),
+        ),
+        body: TabBarView(
+          children: [
+            Center( child: Text("Page 1")),
+            Center( child: Text("Page 2")),
+          ],
+        ),
+      ),
+    );
+  }
+}
+============================================================================
+
+
+ListView.builder(
+  padding: const EdgeInsets.all(8),
+  itemCount: entries.length,
+  itemBuilder: (BuildContext context, int index) {
+    return Container(
+      height: 50,
+      color: Colors.amber[colorCodes[index]],
+      child: Center(child: Text('Entry ${entries[index]}')),
+    );
+  }
+);
